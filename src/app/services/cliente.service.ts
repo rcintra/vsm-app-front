@@ -32,5 +32,8 @@ export class ClienteService {
   updateCliente(cliente: Cliente): Observable<Cliente> {
     return this.http.put<Cliente>(this.url+'/cliente/'+cliente.id, cliente);
   }
-  
+
+  changeStatusCliente(id: number): Observable<Cliente> {
+    return this.http.put<Cliente>(this.url+'/cliente/'+id, {});
+  }
 }

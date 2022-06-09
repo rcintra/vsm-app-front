@@ -36,12 +36,20 @@ export class ClientFormComponent implements OnInit {
 
   save() {
     this.clienteService.saveCliente(this.cliente)
-      .subscribe(res => this.router.navigate(['']));
+      .subscribe(res => {
+        this.router.navigate([''])
+      },
+        error => console.log(error)
+      );
   }
 
   update() {
     this.clienteService.updateCliente(this.cliente)
-      .subscribe(res => this.router.navigate(['']));
+      .subscribe(res => {
+        this.router.navigate([''])
+      },
+       error => console.log(error)
+      );
   }
 
   compararCidade(c1: Cidade, c2: Cidade): boolean {
