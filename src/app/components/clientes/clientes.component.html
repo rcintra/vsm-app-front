@@ -1,0 +1,27 @@
+<div class="container">
+    <h2>Lista de Clientes</h2>
+    <button class="btn btn-primary mb-3" [routerLink]="['formulario']">Cadastar Cliente</button>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Cpf/Cnpj</th>
+                <th scope="col">Cidade</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cliente of clientes">
+                <th scope="row">{{cliente.id}}</th>
+                <td>{{cliente.nome}}</td>
+                <td>{{cliente.cpfCnpj}}</td>
+                <td>{{cliente.cidade.nome}}</td>
+                <td>
+                    <button class="btn btn-info me-2" [routerLink]="['formulario',cliente.id]" >Editar</button>
+                    <button class="btn btn-danger">Excluir</button>
+                </td>
+            </tr>           
+        </tbody>
+    </table>
+</div>

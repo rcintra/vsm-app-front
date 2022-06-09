@@ -1,0 +1,26 @@
+<div class="container">
+    <h2>Cadastrar Cliente</h2>
+    <form>
+        <div class="mb-3">
+            <label for="inputNome" class="form-label">Nome</label>
+            <input type="text" name="nome" [(ngModel)]="cliente.nome" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="inputCpfCnpj" class="form-label">Cpf/Cnpj</label>
+            <input type="text" name="cpfCnpj" [(ngModel)]="cliente.cpfCnpj" class="form-control">
+        </div>
+        <div class="mb-3 form-group">
+            <label for="cidade" class="col-form-label col-sm-2">Cidade</label>
+            <select [compareWith]="compararCidade" name="cidade" [(ngModel)]="cliente.cidade" class="form-control">
+                <option [ngValue]="undefined">---Selecionar uma Cidade---</option>
+                <option *ngFor="let cidade of cidades" [ngValue]="cidade">
+                    {{ cidade.nome }}
+                </option>
+            </select>
+        </div>
+    
+        <button type="submit" class="btn btn-primary" (click)="save()" *ngIf="!cliente.id">Salvar</button>
+        <button type="submit" class="btn btn-primary" (click)="update()" *ngIf="cliente.id">Salvar</button>
+
+    </form>
+</div>
