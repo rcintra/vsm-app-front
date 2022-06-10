@@ -1,0 +1,13 @@
+<div class="container">
+    <h2>Cadastrar Cidade</h2>
+    <form>
+        <div class="mb-3">
+            <label for="inputNome" class="form-label">Nome</label>
+            <input type="text" name="nome" [(ngModel)]="cidade.nome" class="form-control">
+        </div>
+          
+        <button type="submit" class="btn btn-primary" (click)="save()" *ngIf="!cidade.id">Salvar</button>
+        <button type="submit" class="btn btn-primary" (click)="update()" *ngIf="cidade.id">Salvar</button>
+
+    </form>
+</div>

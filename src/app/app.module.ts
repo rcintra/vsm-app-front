@@ -9,13 +9,17 @@ import { ClientFormComponent } from './components/client-form/client-form.compon
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { CidadesComponent } from './components/cidades/cidades.component';
+import { CidadeFormComponent } from './components/cidade-form/cidade-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     ClientesComponent,
-    ClientFormComponent
+    ClientFormComponent,
+    CidadesComponent,
+    CidadeFormComponent
   ],
   imports: [
     BrowserModule,

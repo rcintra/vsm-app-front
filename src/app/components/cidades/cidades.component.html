@@ -1,0 +1,22 @@
+<div class="container">
+    <h2>Lista de Cidades</h2>
+    <button class="btn btn-primary mb-3" [routerLink]="['cidade-form']">Cadastar Cidade</button>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nome</th>           
+                <th scope="col">Ações</th>    
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cidade of cidades">
+                <th scope="row">{{cidade.id}}</th>
+                <td>{{cidade.nome}}</td>               
+                <td>
+                    <button class="btn btn-info me-2" [routerLink]="['cidade-form',cidade.id]" >Editar</button>
+                </td>
+            </tr>           
+        </tbody>
+    </table>
+</div>
