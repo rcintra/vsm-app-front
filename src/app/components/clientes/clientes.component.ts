@@ -8,9 +8,11 @@ import { ClienteService } from 'src/app/services/cliente.service';
   templateUrl: './clientes.component.html',
   styleUrls: ['./clientes.component.css']
 })
-export class ClientesComponent implements OnInit {
+export class ClientesComponent {
 
   clientes: Cliente[] = [];
+  allClientes: Cliente[] = [];
+  searchTerm: string = '';
 
   constructor(
     private clienteService: ClienteService,
@@ -18,7 +20,10 @@ export class ClientesComponent implements OnInit {
 
   ngOnInit(): void {
     this.clienteService.getClientes()
-      .subscribe(response => this.clientes = response);
+      .subscribe((response: Cliente[]) => {
+        this.clientes = response;
+        this.allClientes = response;
+      });
   }
 
   enableDisable(id: number) {
@@ -27,5 +32,11 @@ export class ClientesComponent implements OnInit {
         this.router.navigate([''])
         .then(() => { window.location.reload(); })
       });
+  }
+
+  search(value: string): void {
+    this.clientes = this.allClientes.filter((val) => 
+      val.nome.toLowerCase().includes(value.toLowerCase())
+    );
   }
 }

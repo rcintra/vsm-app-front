@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CidadesComponent } from './components/cidades/cidades.component';
 import { CidadeFormComponent } from './components/cidade-form/cidade-form.component';
+import { SearchFilterPipe } from './search-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CidadeFormComponent } from './components/cidade-form/cidade-form.compon
     ClientesComponent,
     ClientFormComponent,
     CidadesComponent,
-    CidadeFormComponent
+    CidadeFormComponent,
+    SearchFilterPipe
   ],
   imports: [
     BrowserModule,
