@@ -6,13 +6,15 @@
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Nome</th>           
+                <th scope="col">UF</th>
                 <th scope="col">Ações</th>    
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let cidade of cidades">
                 <th scope="row">{{cidade.id}}</th>
-                <td>{{cidade.nome}}</td>               
+                <td>{{cidade.nome}}</td>
+                <td>{{cidade.uf}}</td>               
                 <td>
                     <button class="btn btn-info me-2" [routerLink]="['cidade-form',cidade.id]" >Editar</button>
                 </td>

@@ -11,6 +11,7 @@ import { CidadeService } from 'src/app/services/cidade.service';
 })
 export class CidadeFormComponent implements OnInit {
 
+  todasUF: string[] = ["AC","AL",'AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','PI','RS','RO','RR','SC','SP','SE','TO'];
   cidades: Cidade[] = [];
   id!: string;
   form!: FormGroup;
@@ -26,7 +27,8 @@ export class CidadeFormComponent implements OnInit {
   ngOnInit(): void {
 
     this.form = this.fb.group({
-      nome: ['', Validators.required]
+      nome: ['', Validators.required],
+      uf: ['']
     });
     
     this.cidadeService.getCidades()
@@ -80,4 +82,8 @@ export class CidadeFormComponent implements OnInit {
     );
   }
 
+  compararUf(c1: string, c2: string): boolean {
+    if (c1 === undefined && c2 === undefined) return true;
+    return c1 === null || c2 === null || c1 === undefined || c2 === undefined ? false : c1 === c2;
+  }
 }
