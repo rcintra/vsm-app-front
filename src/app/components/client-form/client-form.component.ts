@@ -5,6 +5,8 @@ import { Cidade } from 'src/app/models/cidade';
 import { Cliente } from 'src/app/models/cliente';
 import { ClienteService } from 'src/app/services/cliente.service';
 
+import { first } from 'rxjs/operators';
+
 @Component({
   selector: 'app-client-form',
   templateUrl: './client-form.component.html',
@@ -36,6 +38,7 @@ export class ClientFormComponent implements OnInit {
         this.isAddMode = !this.id;
         if (this.id) {  
           this.clienteService.getCliente(this.id)
+            .pipe(first())
             .subscribe(res => this.form.patchValue(res));
         }
       });
@@ -43,6 +46,12 @@ export class ClientFormComponent implements OnInit {
       this.form = this.fb.group({
         nome: ['', Validators.required],
         cpfCnpj: [{value:'', disabled:!this.isAddMode}, Validators.required],
+        endereco: [''],
+        numero: [''],
+        bairro: [''],
+        cep: [''],
+        telefone: [''],
+        email: ['', Validators.email],
         cidade: ['']
       });
   

@@ -1,6 +1,6 @@
 <div class="container">
     <h2>Cadastrar Cliente</h2>
-    <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form class="form row g-3" [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="mb-3">
             <label for="inputNome" class="form-label">Nome</label>
             <input type="text" name="nome" formControlName="nome" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nome.errors }">
@@ -9,21 +9,50 @@
             </div>
         </div>
         <div class="mb-3">
-            <label for="inputCpfCnpj" class="form-label">Cpf/Cnpj</label>
+            <label for="cpfCnpj" class="form-label">Cpf/Cnpj</label>
             <input type="text" name="cpfCnpj" formControlName="cpfCnpj" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cpfCnpj.errors }">
             <div *ngIf="submitted && f.cpfCnpj.errors" class="invalid-feedback">
                 <div *ngIf="f.cpfCnpj.errors.required">O cpf/cnpj é obrigatorio.</div>
             </div>
         </div>
-        <div class="mb-3 form-group">
-            <label for="cidade" class="col-form-label col-sm-2">Cidade</label>
-            <select [compareWith]="compararCidade" name="cidade" formControlName="cidade" class="form-control">
+        <div class="col-md-7">
+            <label for="endereco" class="form-label">Endereco</label>
+            <input type="text" name="endereco" formControlName="endereco" class="form-control">
+        </div>
+        <div class="col-md-2">
+            <label for="numero" class="form-label">Número</label>
+            <input type="text" name="numero" formControlName="numero" class="form-control">
+          </div>
+          <div class="col-md-2">
+            <label for="cep" class="form-label">Cep</label>
+            <input type="text" name="cep" formControlName="cep" class="form-control">
+          </div>
+          <div class="col-md-2">
+            <label for="bairro" class="form-label">Bairro</label>
+            <input type="text" name="bairro" formControlName="bairro" class="form-control">
+          </div>
+        <div class="col-md-6">
+            <label for="cidade" class="form-label">Cidade</label>
+            <select [compareWith]="compararCidade" name="cidade" formControlName="cidade" class="form-select">
                 <option [ngValue]="undefined">---Selecionar uma Cidade---</option>
                 <option *ngFor="let cidade of cidades" [ngValue]="cidade">
                     {{ cidade.nome }}
                 </option>
             </select>
+        </div>       
+        <div class="col-md-7">
+            <label for="telefone" class="form-label">Telefone</label>
+            <input type="text" name="telefone" formControlName="telefone" class="form-control">
         </div>
-        <button type="submit" class="btn btn-success">Salvar</button>
+        <div class="col-md-7">
+            <label for="email" class="form-label">E-mail</label>
+            <input type="text" name="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.email">O endereço de E-mail deve ser válido.</div>
+            </div>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-success">Salvar</button>
+        </div>    
     </form>
 </div>
