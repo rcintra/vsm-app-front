@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cidade } from 'src/app/models/cidade';
 import { Cliente } from 'src/app/models/cliente';
@@ -11,31 +12,63 @@ import { ClienteService } from 'src/app/services/cliente.service';
 })
 export class ClientFormComponent implements OnInit {
 
-  cliente: Cliente = new Cliente();
-
   cidades: Cidade[] = [];
+  id!: string;
+  form!: FormGroup;
+  isAddMode!: boolean;  
+  submitted = false;
 
   constructor(
+    private fb: FormBuilder,
     private clienteService: ClienteService, 
     private activateRoute: ActivatedRoute,
     private router: Router) { }
 
   ngOnInit(): void {
+
+  
     this.clienteService.getCidades()
       .subscribe(response => this.cidades = response);
 
     this.activateRoute.params
       .subscribe(params => {
-        let id: number = params['id'];
-        if (id) {
-          this.clienteService.getCliente(id)
-            .subscribe(res => this.cliente = res);
+        this.id = params['id'];
+        this.isAddMode = !this.id;
+        if (this.id) {  
+          this.clienteService.getCliente(this.id)
+            .subscribe(res => this.form.patchValue(res));
         }
       });
+
+      this.form = this.fb.group({
+        nome: ['', Validators.required],
+        cpfCnpj: [{value:'', disabled:!this.isAddMode}, Validators.required],
+        cidade: ['']
+      });
+  
+  }
+
+  // convenience getter for easy access to form fields
+  get f() { return this.form.controls; }
+
+  onSubmit() {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.form.invalid) {
+      return;
+    }
+
+    if (this.isAddMode) {
+      this.save();
+    } else {
+      this.update();
+    }
+
   }
 
   save() {
-    this.clienteService.saveCliente(this.cliente)
+    this.clienteService.saveCliente(this.form.value)
       .subscribe(res => {
         this.router.navigate([''])
       },
@@ -44,7 +77,7 @@ export class ClientFormComponent implements OnInit {
   }
 
   update() {
-    this.clienteService.updateCliente(this.cliente)
+    this.clienteService.updateCliente(this.id, this.form.value)
       .subscribe(res => {
         this.router.navigate([''])
       },

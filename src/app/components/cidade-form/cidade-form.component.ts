@@ -56,9 +56,9 @@ export class CidadeFormComponent implements OnInit {
 
     if (this.isAddMode) {
       this.save();
-  } else {
+    } else {
       this.update();
-  }
+    }
 
   }
 

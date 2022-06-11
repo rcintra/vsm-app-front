@@ -26,7 +26,7 @@ export class ClientesComponent {
       });
   }
 
-  enableDisable(id: number) {
+  enableDisable(id: any) {
     this.clienteService.changeStatusCliente(id)
       .subscribe(res => {
         this.router.navigate([''])

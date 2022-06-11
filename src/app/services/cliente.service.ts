@@ -17,7 +17,7 @@ export class ClienteService {
     return this.http.get<Cliente[]>(this.url+'/clientes');
   }
 
-  getCliente(id: number): Observable<Cliente> {
+  getCliente(id: string): Observable<Cliente> {
     return this.http.get<Cliente>(this.url+'/cliente/'+id);
   }
 
@@ -29,11 +29,11 @@ export class ClienteService {
     return this.http.post<Cliente>(this.url+'/cliente', cliente);
   }
 
-  updateCliente(cliente: Cliente): Observable<Cliente> {
-    return this.http.put<Cliente>(this.url+'/cliente/'+cliente.id, cliente);
+  updateCliente(id: string, cliente: Cliente): Observable<Cliente> {
+    return this.http.put<Cliente>(this.url+'/cliente/'+id, cliente);
   }
 
   changeStatusCliente(id: number): Observable<Cliente> {
-    return this.http.put<Cliente>(this.url+'/cliente/'+id, {});
+    return this.http.put<Cliente>(this.url+'/cliente/status/'+id, {});
   }
 }
