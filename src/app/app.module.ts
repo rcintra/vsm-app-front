@@ -8,7 +8,7 @@ import { ClientesComponent } from './components/clientes/clientes.component';
 import { ClientFormComponent } from './components/client-form/client-form.component';
 
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CidadesComponent } from './components/cidades/cidades.component';
 import { CidadeFormComponent } from './components/cidade-form/cidade-form.component';
 import { SearchFilterPipe } from './search-filter.pipe';
@@ -27,7 +27,8 @@ import { SearchFilterPipe } from './search-filter.pipe';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

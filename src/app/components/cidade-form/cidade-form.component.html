@@ -1,13 +1,16 @@
 <div class="container">
     <h2>Cadastrar Cidade</h2>
-    <form>
+    <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="mb-3">
-            <label for="inputNome" class="form-label">Nome</label>
-            <input type="text" name="nome" [(ngModel)]="cidade.nome" class="form-control">
+            <label for="inputNome" class="form-label">Nome</label>            
+            <input type="text" class="form-control" formControlName="nome" [ngClass]="{ 'is-invalid': submitted && f.nome.errors }">             
+            <div *ngIf="submitted && f.nome.errors" class="invalid-feedback">
+                <div *ngIf="f.nome.errors.required">O nome é obrigatorio.</div>
+            </div>
         </div>
-          
-        <button type="submit" class="btn btn-primary" (click)="save()" *ngIf="!cidade.id">Salvar</button>
-        <button type="submit" class="btn btn-primary" (click)="update()" *ngIf="cidade.id">Salvar</button>
-
+        <div class="form-group">
+            <p><small>Preencha o nome para habilitar o 'salvar'.</small></p>
+            <button type="submit" class="btn btn-success">Salvar</button>
+        </div>
     </form>
 </div>

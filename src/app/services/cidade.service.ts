@@ -16,15 +16,15 @@ export class CidadeService {
     return this.http.get<Cidade[]>(this.url+'/cidades');
   }
 
-  getCidade(id: number): Observable<Cidade> {
-    return this.http.get<Cidade>(this.url+'/cidade/'+id);
+  getCidade(id: string) {
+    return this.http.get(this.url+'/cidade/'+id);
   }
 
-  saveCidade(cidade: Cidade): Observable<Cidade> {
-    return this.http.post<Cidade>(this.url+'/cidade', cidade);
+  saveCidade(params: any) {
+    return this.http.post(this.url+'/cidade', params);
   }
 
-  updateCidade(cidade: Cidade): Observable<Cidade> {
-    return this.http.put<Cidade>(this.url+'/cidade/'+cidade.id, cidade);
+  updateCidade(id: string, params: any) {
+    return this.http.put(this.url+'/cidade/'+id, params);
   }
 }
