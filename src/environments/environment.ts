@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl : 'http://vsmappback-env-1.eba-8fizs6uw.us-east-1.elasticbeanstalk.com'
+  //apiUrl : 'http://localhost:5000'
 };
 
 /*

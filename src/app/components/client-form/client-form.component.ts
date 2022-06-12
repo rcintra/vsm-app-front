@@ -45,14 +45,19 @@ export class ClientFormComponent implements OnInit {
 
       this.form = this.fb.group({
         nome: ['', Validators.required],
-        cpfCnpj: [{value:'', disabled:!this.isAddMode}, Validators.required],
+        cpfCnpj: [{value:'', disabled:!this.isAddMode}, 
+          [
+            Validators.required,
+            Validators.pattern(/\-?\d*\.?\d{1,2}/)
+          ]   
+        ],
         endereco: [''],
-        numero: [''],
+        numero: ['', Validators.pattern(/\-?\d*\.?\d{1,2}/)],
         bairro: [''],
         cep: [''],
         telefone: [''],
         email: ['', Validators.email],
-        cidade: ['']
+        cidade: [{}]
       });
   
   }

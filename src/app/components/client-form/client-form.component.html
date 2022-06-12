@@ -10,8 +10,9 @@
         </div>
         <div class="mb-3">
             <label for="cpfCnpj" class="form-label">Cpf/Cnpj</label>
-            <input type="text" name="cpfCnpj" formControlName="cpfCnpj" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cpfCnpj.errors }">
+            <input type="number" name="cpfCnpj" formControlName="cpfCnpj" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cpfCnpj.errors }">
             <div *ngIf="submitted && f.cpfCnpj.errors" class="invalid-feedback">
+                <div>{{f.cpfCnpj.errors}}</div>
                 <div *ngIf="f.cpfCnpj.errors.required">O cpf/cnpj é obrigatorio.</div>
             </div>
         </div>
@@ -21,7 +22,10 @@
         </div>
         <div class="col-md-2">
             <label for="numero" class="form-label">Número</label>
-            <input type="text" name="numero" formControlName="numero" class="form-control">
+            <input type="number" name="numero" formControlName="numero" class="form-control">
+            <div *ngIf="submitted && f.numero.errors" class="invalid-feedback">
+                <div>{{f.numero.errors}}</div>
+            </div>    
           </div>
           <div class="col-md-2">
             <label for="cep" class="form-label">Cep</label>
